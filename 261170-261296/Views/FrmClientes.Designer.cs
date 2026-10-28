@@ -48,13 +48,13 @@
             this.btnExcluir = new System.Windows.Forms.Button();
             this.btnFechar = new System.Windows.Forms.Button();
             this.txtPesquisa = new System.Windows.Forms.TextBox();
-            this.dgvClientes = new System.Windows.Forms.DataGridView();
+            this.DgvClientes = new System.Windows.Forms.DataGridView();
             this.btnConsultar = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.picFoto = new System.Windows.Forms.PictureBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvClientes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picFoto)).BeginInit();
             this.SuspendLayout();
             // 
@@ -93,6 +93,7 @@
             this.cboCidades.Name = "cboCidades";
             this.cboCidades.Size = new System.Drawing.Size(367, 21);
             this.cboCidades.TabIndex = 3;
+            this.cboCidades.SelectedIndexChanged += new System.EventHandler(this.cboCidades_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -173,6 +174,7 @@
             this.btnIncluir.Text = "Incluir";
             this.btnIncluir.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnIncluir.UseVisualStyleBackColor = true;
+            this.btnIncluir.Click += new System.EventHandler(this.btnIncluir_Click);
             // 
             // label5
             // 
@@ -194,6 +196,7 @@
             this.btnAlterar.Text = "Alterar";
             this.btnAlterar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAlterar.UseVisualStyleBackColor = true;
+            this.btnAlterar.Click += new System.EventHandler(this.btnAlterar_Click);
             // 
             // btnCancelar
             // 
@@ -206,6 +209,7 @@
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnExcluir
             // 
@@ -218,6 +222,7 @@
             this.btnExcluir.Text = "Excluir";
             this.btnExcluir.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnExcluir.UseVisualStyleBackColor = true;
+            this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
             // 
             // btnFechar
             // 
@@ -230,6 +235,7 @@
             this.btnFechar.Text = "Fechar";
             this.btnFechar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnFechar.UseVisualStyleBackColor = true;
+            this.btnFechar.Click += new System.EventHandler(this.btnFechar_Click);
             // 
             // txtPesquisa
             // 
@@ -238,13 +244,14 @@
             this.txtPesquisa.Size = new System.Drawing.Size(525, 20);
             this.txtPesquisa.TabIndex = 1;
             // 
-            // dgvClientes
+            // DgvClientes
             // 
-            this.dgvClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvClientes.Location = new System.Drawing.Point(17, 336);
-            this.dgvClientes.Name = "dgvClientes";
-            this.dgvClientes.Size = new System.Drawing.Size(615, 150);
-            this.dgvClientes.TabIndex = 7;
+            this.DgvClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgvClientes.Location = new System.Drawing.Point(17, 336);
+            this.DgvClientes.Name = "DgvClientes";
+            this.DgvClientes.Size = new System.Drawing.Size(615, 150);
+            this.DgvClientes.TabIndex = 7;
+            this.DgvClientes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvClientes_CellClick);
             // 
             // btnConsultar
             // 
@@ -254,6 +261,7 @@
             this.btnConsultar.Size = new System.Drawing.Size(61, 47);
             this.btnConsultar.TabIndex = 6;
             this.btnConsultar.UseVisualStyleBackColor = true;
+            this.btnConsultar.Click += new System.EventHandler(this.btnConsultar_Click);
             // 
             // label6
             // 
@@ -298,7 +306,7 @@
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.ClientSize = new System.Drawing.Size(646, 501);
             this.Controls.Add(this.picFoto);
-            this.Controls.Add(this.dgvClientes);
+            this.Controls.Add(this.DgvClientes);
             this.Controls.Add(this.btnConsultar);
             this.Controls.Add(this.btnFechar);
             this.Controls.Add(this.btnExcluir);
@@ -325,7 +333,7 @@
             this.Name = "FrmClientes";
             this.Text = "Cadastro de Clientes";
             this.Load += new System.EventHandler(this.FrmClientes_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvClientes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picFoto)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -353,7 +361,7 @@
         private System.Windows.Forms.Button btnExcluir;
         private System.Windows.Forms.Button btnFechar;
         private System.Windows.Forms.TextBox txtPesquisa;
-        private System.Windows.Forms.DataGridView dgvClientes;
+        private System.Windows.Forms.DataGridView DgvClientes;
         private System.Windows.Forms.Button btnConsultar;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.PictureBox picFoto;

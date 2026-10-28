@@ -45,8 +45,111 @@ namespace _261170_261296.Views
             carregarGrid("");
 
             // Deixa invisível colunas do Grid
-            dgvClientes.Columns["idCidade"].Visible = false;
-            dgvClientes.Columns["foto"].Visible = false;
+            DgvClientes.Columns["idCidade"].Visible = false;
+            DgvClientes.Columns["foto"].Visible = false;
+        }
+
+        private void cboCidades_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboCidades.SelectedIndex != -1)
+            {
+                DataRowView reg = (DataRowView)cboCidades.SelectedItem;
+                txtUF.Text = reg["uf"].ToString();
+            }
+        }
+
+        private void btnIncluir_Click(object sender, EventArgs e)
+        {
+            if (txtNome.Text == "") return;
+
+            cl = new Cliente()
+            {
+                nome = txtNome.Text,
+                idCidade = (int)cboCidades.SelectedValue,
+                dataNasc = dtpDataNasc.Value,
+                renda = double.Parse(txtRenda.Text),
+                cpf = mskCPF.Text,
+                foto = picFoto.ImageLocation,
+                venda = chkVenda.Checked
+            };
+
+            cl.Incluir();
+
+            LimpaControles();
+            carregarGrid("");
+        }
+
+        private void dgvClientes_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (DgvClientes.RowCount > 0)
+            {
+                txtID.Text = DgvClientes.CurrentRow.Cells["id"].Value.ToString();
+                txtNome.Text = DgvClientes.CurrentRow.Cells["nome"].Value.ToString();
+                cboCidades.Text = DgvClientes.CurrentRow.Cells["cidade"].Value.ToString();
+                txtUF.Text = DgvClientes.CurrentRow.Cells["uf"].Value.ToString();
+                chkVenda.Checked = (bool)DgvClientes.CurrentRow.Cells["venda"].Value;
+                mskCPF.Text = DgvClientes.CurrentRow.Cells["cpf"].Value.ToString();
+                dtpDataNasc.Text = DgvClientes.CurrentRow.Cells["dataNasc"].Value.ToString();
+                txtRenda.Text = DgvClientes.CurrentRow.Cells["renda"].Value.ToString();
+                picFoto.ImageLocation = DgvClientes.CurrentRow.Cells["foto"].Value.ToString();
+            }
+        }
+
+        private void btnAlterar_Click(object sender, EventArgs e)
+        {
+            if (txtID.Text == "") return;
+
+            cl = new Cliente()
+            {
+                id = int.Parse(txtID.Text),
+                nome = txtNome.Text,
+                idCidade = (int)cboCidades.SelectedValue,
+                dataNasc = dtpDataNasc.Value,
+                renda = double.Parse(txtRenda.Text),
+                cpf = mskCPF.Text,
+                foto = picFoto.ImageLocation,
+                venda = chkVenda.Checked
+            };
+
+            cl.Alterar();
+
+            LimpaControles();
+            carregarGrid("");
+        }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            if (txtID.Text == "") return;
+
+            if (MessageBox.Show("Deseja excluir o cliente?", "Exclusão",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                cl = new Cliente()
+                {
+                    id = int.Parse(txtID.Text)
+                };
+
+                cl.Excluir();
+
+                LimpaControles();
+                carregarGrid("");
+            }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            LimpaControles();
+            carregarGrid("");
+        }
+
+        private void btnConsultar_Click(object sender, EventArgs e)
+        {
+            carregarGrid(txtPesquisa.Text);
+        }
+
+        private void btnFechar_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }
