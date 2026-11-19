@@ -32,6 +32,15 @@ namespace _261170_261296.Views
             chkVenda.Checked = false;
         }
 
+        void carregarGrid(string pesquisa)
+        {
+            cl = new Cliente()
+            {
+                nome = pesquisa
+            };
+            DgvClientes.DataSource = cl.Consultar();
+        }
+
         private void FrmClientes_Load(object sender, EventArgs e)
         {
             // Cria um objeto do tipo cidades
@@ -151,5 +160,15 @@ namespace _261170_261296.Views
         {
             Close();
         }
+
+        private void picFoto_Click(object sender, EventArgs e)
+        {
+            ofdArquivo.InitialDirectory = "D:/fotos/clientes/";
+            ofdArquivo.FileName = "";
+            ofdArquivo.ShowDialog();
+            picFoto.ImageLocation = ofdArquivo.FileName;
+        }
+
+       
     }
 }

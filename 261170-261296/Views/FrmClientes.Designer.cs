@@ -54,6 +54,7 @@
             this.picFoto = new System.Windows.Forms.PictureBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.ofdArquivo = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.DgvClientes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picFoto)).BeginInit();
             this.SuspendLayout();
@@ -274,12 +275,13 @@
             // 
             // picFoto
             // 
-            this.picFoto.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.picFoto.BackColor = System.Drawing.Color.Thistle;
             this.picFoto.Location = new System.Drawing.Point(443, 25);
             this.picFoto.Name = "picFoto";
             this.picFoto.Size = new System.Drawing.Size(189, 192);
             this.picFoto.TabIndex = 8;
             this.picFoto.TabStop = false;
+            this.picFoto.Click += new System.EventHandler(this.picFoto_Click);
             // 
             // label7
             // 
@@ -298,6 +300,10 @@
             this.label8.Size = new System.Drawing.Size(39, 13);
             this.label8.TabIndex = 0;
             this.label8.Text = "Renda";
+            // 
+            // ofdArquivo
+            // 
+            this.ofdArquivo.FileName = "openFileDialog1";
             // 
             // FrmClientes
             // 
@@ -367,5 +373,6 @@
         private System.Windows.Forms.PictureBox picFoto;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.OpenFileDialog ofdArquivo;
     }
 }

@@ -27,6 +27,19 @@ namespace _261170_261296
         {
             FrmCidades form = new FrmCidades();
             form.Show();
+
+        }
+
+        private void clientesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmClientes form = new FrmClientes();
+            form.Show();
+        }
+
+       private void produtosToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            FrmProdutos form = new FrmProdutos();
+            form.Show();
         }
     }
 }
