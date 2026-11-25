@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using static Org.BouncyCastle.Asn1.Cmp.Challenge;
 using System.Windows.Forms;
+using System.Data;
 
 namespace _261170_261296.Models
 {
@@ -19,15 +20,37 @@ namespace _261170_261296.Models
         public string categoria { get; set; }
         public string foto { get; set; }
 
+        public DataTable Consultar()
+        {
+            try
+            {
+                Banco.Comando = new MySqlCommand("SELECT pr.*, ma.marca marca, " +
+                    "ca.categoria categoria FROM Produtos pr " +
+                    "inner join Marcas ma on (ma.id = pr.idMarca) " +
+                    "inner join Categorias ca on (ca.id = pr.idCategoria) " +
+                    "where pr.descricao like ?Descricao order by pr.descricao", Banco.Conexao);
 
+                Banco.Comando.Parameters.AddWithValue("@Descricao", descricao + "%");
+                Banco.Adaptador = new MySqlDataAdapter(Banco.Comando);
+                Banco.datTabela = new DataTable();
+                Banco.Adaptador.Fill(Banco.datTabela);
+                return Banco.datTabela;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+        }
         public void Incluir()
         {
             try
             {
                 Banco.Conexao.Open();
                 Banco.Comando = new MySqlCommand
-                ("INSERT INTO produtos (descricao, marca, valorVenda, estoque, categoria, foto) " +
+                ("INSERT INTO produtos (descricao, idMarca, valorVenda, estoque, idCategoria, foto) " +
                 "VALUES (@descricao, @marca, @valorVenda, @estoque, @categoria, @foto)", Banco.Conexao);
+
                 Banco.Comando.Parameters.AddWithValue("@descricao", descricao);
                 Banco.Comando.Parameters.AddWithValue("@marca", marca);
                 Banco.Comando.Parameters.AddWithValue("@valorVenda", valorVenda);
@@ -49,8 +72,10 @@ namespace _261170_261296.Models
             {
                 Banco.Conexao.Open();
                 Banco.Comando = new MySqlCommand
-                ("UPDATE produtos SET descricao = @descricao, marca = @marca, valorVenda = @valorVenda, " +
-                "estoque = @estoque, categoria = @categoria, foto = @foto, venda = @venda where id = @id", Banco.Conexao);
+                ("UPDATE produtos SET descricao = @descricao, idMarca = @marca, " +
+                "valorVenda = @valorVenda, estoque = @estoque, " +
+                "idCategoria = @categoria, foto = @foto where id = @id", Banco.Conexao);
+
                 Banco.Comando.Parameters.AddWithValue("@descricao", descricao);
                 Banco.Comando.Parameters.AddWithValue("@marca", marca);
                 Banco.Comando.Parameters.AddWithValue("@valorVenda", valorVenda);
@@ -71,11 +96,15 @@ namespace _261170_261296.Models
         {
             try
             {
-                Banco.Conexao.Open();
-                Banco.Comando = new MySqlCommand("delete from produtos where id = @id", Banco.Conexao);
+                Banco.AbrirConexao();
+
+                Banco.Comando = new MySqlCommand(
+                    "delete from produtos where id = @id", Banco.Conexao);
+
                 Banco.Comando.Parameters.AddWithValue("@id", id);
                 Banco.Comando.ExecuteNonQuery();
-                Banco.Conexao.Close();
+
+                Banco.FecharConexao();
             }
             catch (Exception e)
             {

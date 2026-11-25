@@ -50,7 +50,7 @@
             this.cboCategoria = new System.Windows.Forms.ComboBox();
             this.txtVenda = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtDescricao = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.picFoto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvProdutos)).BeginInit();
             this.SuspendLayout();
@@ -66,11 +66,16 @@
             // 
             // DgvProdutos
             // 
+            this.DgvProdutos.AllowUserToAddRows = false;
+            this.DgvProdutos.AllowUserToDeleteRows = false;
+            this.DgvProdutos.AllowUserToOrderColumns = true;
             this.DgvProdutos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgvProdutos.Location = new System.Drawing.Point(63, 414);
             this.DgvProdutos.Name = "DgvProdutos";
+            this.DgvProdutos.ReadOnly = true;
             this.DgvProdutos.Size = new System.Drawing.Size(648, 150);
             this.DgvProdutos.TabIndex = 32;
+            this.DgvProdutos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvProdutos_CellClick);
             // 
             // btnConsultar
             // 
@@ -80,6 +85,7 @@
             this.btnConsultar.Size = new System.Drawing.Size(61, 47);
             this.btnConsultar.TabIndex = 31;
             this.btnConsultar.UseVisualStyleBackColor = true;
+            this.btnConsultar.Click += new System.EventHandler(this.btnConsultar_Click);
             // 
             // btnFechar
             // 
@@ -92,6 +98,7 @@
             this.btnFechar.Text = "Fechar";
             this.btnFechar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnFechar.UseVisualStyleBackColor = true;
+            this.btnFechar.Click += new System.EventHandler(this.btnFechar_Click);
             // 
             // btnExcluir
             // 
@@ -104,6 +111,7 @@
             this.btnExcluir.Text = "Excluir";
             this.btnExcluir.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnExcluir.UseVisualStyleBackColor = true;
+            this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
             // 
             // btnAlterar
             // 
@@ -116,6 +124,7 @@
             this.btnAlterar.Text = "Alterar";
             this.btnAlterar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAlterar.UseVisualStyleBackColor = true;
+            this.btnAlterar.Click += new System.EventHandler(this.btnAlterar_Click);
             // 
             // btnCancelar
             // 
@@ -128,6 +137,7 @@
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnIncluir
             // 
@@ -254,13 +264,13 @@
             this.label4.TabIndex = 38;
             this.label4.Text = "Descrição";
             // 
-            // textBox2
+            // txtDescricao
             // 
-            this.textBox2.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.textBox2.Location = new System.Drawing.Point(60, 244);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(648, 20);
-            this.textBox2.TabIndex = 39;
+            this.txtDescricao.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.txtDescricao.Location = new System.Drawing.Point(60, 244);
+            this.txtDescricao.Name = "txtDescricao";
+            this.txtDescricao.Size = new System.Drawing.Size(648, 20);
+            this.txtDescricao.TabIndex = 39;
             // 
             // FrmProdutos
             // 
@@ -268,7 +278,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.ClientSize = new System.Drawing.Size(746, 602);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.txtDescricao);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtVenda);
             this.Controls.Add(this.cboCategoria);
@@ -323,6 +333,6 @@
         private System.Windows.Forms.ComboBox cboCategoria;
         private System.Windows.Forms.TextBox txtVenda;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtDescricao;
     }
 }
